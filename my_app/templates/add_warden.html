@@ -1,0 +1,19 @@
+<html>
+    {% load static %}
+    {% load crispy_forms_tags %}
+    <head>
+        <title>Django my_app</title>
+        <link rel= "stylesheet" href=" {% static 'css/bootstrap.min.css' %}">
+    </head>
+
+    <body>
+        <h1>Add warden</h1>
+        <form method="POST">
+           {% csrf_token %}
+           {{form|crispy}}
+           <input type="submit">
+        </form>
+        <a href="{% url 'index.html'%}">Back home</a>
+    
+    </body>
+</html>
