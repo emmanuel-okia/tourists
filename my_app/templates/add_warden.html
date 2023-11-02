@@ -8,12 +8,32 @@
 
     <body>
         <h1>Add warden</h1>
+        <div class="container">
         <form method="POST">
            {% csrf_token %}
            {{form|crispy}}
-           <input type="submit">
+           <input type="submit" class="btn btn-success">
         </form>
-        <a href="{% url 'index.html'%}">Back home</a>
+        
+           <a href="{% url 'index.html'%}">Back home</a>
+        {% if msg %}
+         {{msg}}
+        {% endif %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">warden_name</th>
+                    <th scope="col">warden_address</th>
+                    <th scope="col">warden_contact</th>
+                </tr>
+            </thead>
+
+        </table>
+        </div>
+        
+       
     
     </body>
 </html>

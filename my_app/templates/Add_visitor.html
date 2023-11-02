@@ -1,20 +1,49 @@
-<html>
-    {% load static %}
-    {% load crispy_forms_tags %}
-    <head>
-         
-        <title>Django my_app</title>
-        <link rel= "stylesheet" href=" {% static 'css/bootstrap.min.css' %}">
-    </head>
+{% extends './base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
 
-    <body>
         <h1>Add visitor</h1>
+        <div class="container">
         <form method="POST">
            {% csrf_token %}
            {{form|crispy}}
-           <input type="submit">
+           <input type="submit" class="btn btn-success">
         </form>
         <a href="{% url 'index.html'%}">Back home</a>
-    
-    </body>
-</html>
+        {% if msg %}
+         {{msg}}
+        {% endif %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">name</th>
+                    <th scope="col">age</th>
+                    <th scope="col">contact</th>
+                    <th scope="col">address</th>
+                    <th scope="col">wild_life</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for visitor in visitor %}
+                <tr>
+                    <th scope="row">{{visitor.id}}</th>
+                    <td>{{visitor.name}}</td>
+                    <td>{{visitor.age}}</td>
+                    <td>{{visitor.contact}}</td>
+                    <td>{{visitor.address}}</td>
+                    <td>{{visitor.wild_life}}</td>
+                    <td>
+                        <a href="">Edit</a>|
+                        <a href="">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        </div>
+        
+{% endblock content %}
