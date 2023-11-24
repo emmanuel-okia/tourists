@@ -1,9 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+{% extends './base.html' %}
+    
+{% block content %}
+    
+    <h1>WELCOME TO DESERT VIEW TOURISM SERVICES
+    <h2>LOCATION</h2>
+    <P>We are located at NAPAK DISTRICT, P.O.BOX 12345 (u)</P>
+    <h2>OUR SERVICES</h2>
+    <p>Quick and cheap transport with confort accross the country</p>
+    <p>Hospitality and affordable acommodation services</p>
+    <h2>CONTACT US ON</h2>
+    <P>You can contact us on 0771459421/0786003117/0742279145</P>
+
     <a href="{% url 'wild.html'%}">wild</a>
     <a href="{% url 'warden.html'%}">warden</a>
     <a href="{% url 'add_warden_page' %}">Add warden</a>
@@ -11,35 +18,8 @@
     <a href="{% url 'add_wild_page' %}">Add wild</a>
     <a href="{% url 'add_visitor_page' %}">Add visitor</a>
     <a href="{% url 'add_payment_page' %}">Add payment</a>
-      
-</head>
 
-
-<body>
-    
-
-    <section class="hero">
-        <h1>WELCOME TO DESERT VIEW TOURISM SERVICES
-        <h2>LOCATION</h2>
-        <P>We are located at NAPAK DISTRICT, P.O.BOX 12345 (u)</P>
-        <h2>OUR SERVICES</h2>
-        <p>Quick and cheap transport with confort accross the country</p>
-        <p>Hospitality and affordable acommodation services</p>
-        <h2>CONTACT US ON</h2>
-        <P>You can contact us on 0771459421/0786003117/0742279145</P>
-        
-    </section>
-
-    <section class="featured">
-        
-        
-        
-            
-        
-    </section>
-    
-</body>
-</html>
+{% endblock content %}
 
 
 

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from my_app.views import index_view, wild_view, warden_view, add_warden_view, add_game_park_view, add_wild_view,add_visitor_view, add_payment_view
+from my_app.views import index_view, wild_view, warden_view, add_warden_view, add_game_park_view, add_wild_view,add_visitor_view, add_payment_view,edit_warden_view,delete_warden_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +30,8 @@ urlpatterns = [
     path('add_wild/', add_wild_view, name ="add_wild_page"),
     path('add_visitor/', add_visitor_view, name ="add_visitor_page"),
     path('add_payment/', add_payment_view, name ="add_payment_page"),
+    path('edit_warden/<int:warden_id>/', edit_warden_view, name="edit_warden_page"),
+    path('delete_warden/<int:warden_id>/', delete_warden_view, name="delete_warden_page"),
 
 
 ]

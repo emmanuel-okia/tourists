@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from my_app.forms import WardenForm
 from my_app.forms import Game_parkForm
 from my_app.forms import WildForm
@@ -69,7 +69,7 @@ def add_game_park_view(request):
     context ={
         'form':game_park_form,
         'msg':message,
-        'g_park': game_park,
+        'game_park': game_park,
     }
     return render(request, 'add_game_park.html', context)
 
@@ -110,7 +110,7 @@ def add_visitor_view(request):
     context ={
         'form':visitor_form,
         'msg':message,
-        'vst': visitor
+        'visitor': visitor
     }
 
     return render(request, "add_visitor.html", context)
@@ -133,10 +133,46 @@ def add_payment_view(request):
     context ={
         'form':payment_form,
         'msg':message,
-        'pyt': payment
+        'payment': payment
     }
 
     return render(request, "add_payment.html", context)
+
+
+
+def edit_warden_view(request, warden_id):
+    message = ''
+    warden = Warden.objects.get(id= warden_id)
+
+    if request.method == "POST":
+        warden_form = WardenForm(request.POST, instance=warden)
+
+        if warden_form.is_valid():
+            warden_form.save()
+            message = "saved successfully"
+
+        else:
+            message = "saved data is ivalid"
+
+    else:
+        warden_form = WardenForm(instance=warden) 
+
+    context = {
+        'form':warden_form,
+        'warden':warden,
+        'message': message 
+    }
+
+    return render(request, "edit_warden.html", context)
+
+
+
+def delete_warden_view(request, warden_id):
+    warden = Warden.objects.get(id= warden_id)
+
+    warden.delete()
+
+    return redirect(add_warden_view)
 
 
 

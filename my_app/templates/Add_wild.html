@@ -1,12 +1,7 @@
-<html>
-    {% load static %}
-    {% load crispy_forms_tags %}
-    <head>
-        <title>Django my_app</title>
-        <link rel= "stylesheet" href=" {% static 'css/bootstrap.min.css' %}">
-    </head>
+{% extends './base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
 
-    <body>
         <h1>Add wild</h1>
         <div class="container">
         <form method="POST">
@@ -29,10 +24,25 @@
                     <th scope="col">game-park</th>
                 </tr>
             </thead>
+
+            <tbody>
+                {% for wild in wild %}
+                <tr>
+                    <th scope="row">{{wild.id}}</th>
+                    <td>{{wild.species_type}}</td>
+                    <td>{{wild.no_of_species}}</td>
+                    <td>{{wild.game_park}}</td>
+                    <td>
+                        <a href="">Edit</a>|
+                        <a href="">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
         </table>
 
     </div>
         
     
-    </body>
-</html>
+ {% endblock content %}
