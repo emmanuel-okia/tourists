@@ -1,19 +1,29 @@
 {% extends './base.html' %}
-{% load crispy_forms_tags %} 
-{% block content %}
 
-        <h1>Add wild</h1>
-        <div class="container">
-        <form method="POST">
-           {% csrf_token %}
-           {{form|crispy}}
-           <input type="submit" class="btn btn-success">
-        
-        </form>
-        <a href="{% url 'index.html'%}">Back home</a>
-        {% if msg %}
-         {{msg}}
-        {% endif %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-wvfXp8c/Z9nPR+Zl/eR5d9BkpgSr+/MIbXzI1kR6DeVetan9gDz+3ZofP2LJZGpU8CjGFlvqUq0WfMhLs0K9Cg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Your form fields go here -->
+        <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add Warden
+          </button></a>
+    </form>
+
+    {% if message %}
+        {{ message }}
+    {% endif %}
+
+   <div class="container">
+
+   </div>
 
         <table class="table table-striped">
             <thead>
@@ -33,8 +43,14 @@
                     <td>{{wild.no_of_species}}</td>
                     <td>{{wild.game_park}}</td>
                     <td>
-                        <a href="">Edit</a>|
-                        <a href="">Delete</a>
+                        <a href="{% url 'edit_wild_page' wild.id %}"> 
+                            <i class="fas fa-edit"></i> |
+                        </a>
+                        <a href="{% url 'delete_wild_page' wild.id %}"
+                            onClick="return confirm('confirm to delete')">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+    
                     </td>
                 </tr>
                 {% endfor %}

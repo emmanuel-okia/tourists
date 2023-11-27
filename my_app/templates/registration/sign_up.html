@@ -1,0 +1,16 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}
+
+        <form method="POST">
+           {% csrf_token %}
+           {{form | crispy}}
+           <input type="submit" value="Save" class="btn btn-primary">
+           <a class="btn btn-danger" href="{% url 'sign_up_page' %}">Cancel</a>
+
+           {% if message %}
+         {{message}}
+        {% endif %}
+        </form>
+
+{% endblock content %}

@@ -1,21 +1,18 @@
 {% extends './base.html' %}
-    
-{% block content %}
-    
-{% load crispy_forms_tags %}
-    
-        <h1>Add warden</h1>
-        <form method="POST">
-           {% csrf_token %}
-           {{form|crispy}}
-           <input type="submit" class="btn btn-success">
-        </form>
-        
-           <a href="{% url 'index.html'%}">Back home</a>
-        {% if msg %}
-         {{msg}}
-        {% endif %}
 
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1><button type="submit" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    add warden
+    </button></h1>
+
+    <div class="container">
+
+    </div>
+
+    
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -23,30 +20,43 @@
                     <th scope="col">warden_name</th>
                     <th scope="col">warden_address</th>
                     <th scope="col">warden_contact</th>
+                    <th scope = "col"> photo</th>
                 </tr>
             </thead>
             <tbody>
                 {% for warden in warden %}
-                <tr>
-                    <th scope="row">{{warden.id}}</th>
-                    <td>{{warden.warden_name}}</td>
-                    <td>{{warden.warden_address}}</td>
-                    <td>{{warden.warden_contact}}</td>
-                    <td>
-                        <a href="{% url 'edit_warden_page' warden.id %}">Edit</a>|
-                        <a href="{% url 'delete_warden_page' warden_id=warden.id %}">Delete Warden</a>
-
-                        
-                        onclick="return confirm ('confirm to delete') ">
-                        
-                        Delete
-                    </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <th scope="row">{{warden.id}}</th>
+                        <td>{{warden.warden_name}}</td>
+                        <td>{{warden.warden_address}}</td>
+                        <td>{{warden.contact}}</td>
+                        <td>
+                            {% if warden.warden_photo %}
+                                <img src="{{warden.warden_photo.url}}" width="50px" height="50px">
+                            {% else %}
+                                <p>not available</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'edit_warden_page' warden.id %}">
+                                <i class="fas fa-edit"></i> |
+                            </a>
+                            <a href="{% url 'delete_warden_page' warden.id %}"
+                                onClick="return confirm('confirm to delete')">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
 
         </table>
         
-        
+    </div> 
+</div>
+<!-- Modal form -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Your existing modal content here -->
+  </div>
 {% endblock content %}

@@ -1,14 +1,16 @@
 {% extends './base.html' %}
 {% load crispy_forms_tags %} 
 {% block content %}
-        <h1>Edit -{{warden.name}}</h1>
+        <h1>Edit -{{warden.warden_name}}</h1>
 
         <div class="container">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
            {% csrf_token %}
            {{form | crispy}}
-           <input type="submit" class="btn btn-primary">
-           <input type="button" class="btn btn-danger">
+           <img src="{{warden.warden_photo.url}}" width="50px" height="50px">
+
+           <input type="submit" value="Save" class="btn btn-primary">
+           <a class="btn btn-danger" href="{% url 'add_warden_page' %}">Cancel</a>
 
            {% if message %}
          {{message}}
